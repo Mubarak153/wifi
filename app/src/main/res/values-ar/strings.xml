@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="aboutMsg">لا توجد شبكات متاحة</string>
+    <string name="about_description">تساعدك هذه الأداة على الاتصال بأي شبكة تم تمكين wps باستخدام رقم التعريف الشخصي. إنه فقط لاختبار شبكتك الخاصة فقط. تم تطوير التطبيق لأغراض تعليمية. نحن لسنا مسؤولين عن أي سوء استخدام.</string>
+    <string name="action_about">معلومات عنا</string>
+    <string name="action_showpwd">عرض كلمة المرور</string>
+    <string name="alertDialog_trypin">محاولة</string>
+    <string name="app_descrip">اتصل بشبكة WiFi باستخدام WPS PIN. هذا الخيار متاح فقط في 4.1.2.</string>
+    <string name="askWritePermission">لتتمكن من الكتابة في الذاكرة الخارجية ، تحتاج إلى السماح بإذن الكتابة.</string>
+    <string name="backupFail">هناك مشكلة. لم يتم حفظ النسخ الاحتياطي!</string>
+    <string name="backupNoRoot">"متاح فقط لمستخدمي ROOT "</string>
+    <string name="backupSuccess">تم النسخ الاحتياطي!</string>
+    <string name="cancel">إلغاء</string>
+    <string name="chooseMethod_noRoot">جرب Pin بدون Root</string>
+    <string name="chooseMethod_root">جرب Pin (Root)</string>
+    <string name="choosePIN">اختر Pin</string>
+    <string name="clipBoard">نسخ إلى الحافظة</string>
+    <string name="connected">متصل!</string>
+    <string name="copyClipBoard">نسخ</string>
+    <string name="dialogSuccess">قد يكون لديك بالفعل كلمة المرور. قم بتعطيله واتصل مرة أخرى!</string>
+    <string name="dialog_backupPass">هل تريد حفظ نسخة احتياطية من كلمات المرور المخزنة؟</string>
+    <string name="dialog_gps_cancel">تذكر تمكين موقع GPS لبدء مسح شبكات WiFI!</string>
+    <string name="dialog_need_active_gps_info">تذكر ، إذا كنت تستخدم Android 6.0+ ، فأنت بحاجة إلى تنشيط GPS.</string>
+    <string name="enableWiFi">تمكين WiFi</string>
+    <string name="enablingWiFi">جارٍ تمكين WiFi ...</string>
+    <string name="mainNoNetworks">لا توجد شبكات WiFi قريبة</string>
+    <string name="mainlayout_info">اضغط على \"Scan\" لبدء فحص الشبكات</string>
+    <string name="noInfoToClipBoard">لا شيء لنسخه</string>
+    <string name="noNetAvailable">لا توجد شبكات متاحة</string>
+    <string name="noSSID">- شبكة مخفية -</string>
+    <string name="noScan">من فضلك ، اضغط على زر \"Scan\" لمسح الشبكات المتاحة.</string>
+    <string name="request_gps_info">في Android 6.0 أو أعلى ، من الضروري منح أذونات الموقع لمسح شبكات WiFi.</string>
+    <string name="tryConnection">نحن نحاول الاتصال. كن صبورا!</string>
+    <string name="useRootMethod">"استخدم طريقة Root "</string>
+    <string name="writeDeniedDialog">من فضلك ، اسمح للكتابة في الذاكرة الخارجية لتتمكن من حفظ النسخة الاحتياطية.</string>
+    <string name="accept">قبول</string>
+</resources>

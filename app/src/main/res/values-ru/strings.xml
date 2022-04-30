@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="aboutMsg">Нет доступных сетей</string>
+    <string name="about_description">Этот инструмент поможет вам подключиться к любой сети, в которой включен wps с помощью пин-кода. Это только для тестирования вашей собственной сети. Приложение разработано с образовательными целями. Мы не несем ответственности за неправильное использование.</string>
+    <string name="action_about">О нас</string>
+    <string name="action_showpwd">Показать пароль</string>
+    <string name="alertDialog_trypin">Пытаться</string>
+    <string name="app_descrip">Подключитесь к Wi-Fi с помощью PIN-кода WPS. Эта опция доступна только в 4.1.2.</string>
+    <string name="askWritePermission">Чтобы иметь возможность писать во внешнюю память, вам необходимо разрешить запись.</string>
+    <string name="backupFail">Существует проблема. Резервная копия не сохраняется!</string>
+    <string name="backupNoRoot">Доступно только для пользователей root</string>
+    <string name="backupSuccess">Резервное копирование выполнено!</string>
+    <string name="cancel">Отмена</string>
+    <string name="chooseMethod_noRoot">Попробуй пин без рута</string>
+    <string name="chooseMethod_root">Выберите PIN-код</string>
+    <string name="choosePIN">Выберите PIN-код</string>
+    <string name="clipBoard">Скопировано в буфер обмена</string>
+    <string name="connected">Связанный!</string>
+    <string name="copyClipBoard">Копировать</string>
+    <string name="dialogSuccess">Возможно, у вас уже есть пароль. Отключите его и подключитесь снова!</string>
+    <string name="dialog_backupPass">Вы хотите сохранить резервную копию ваших сохраненных паролей?</string>
+    <string name="dialog_gps_cancel">Не забудьте включить определение местоположения по GPS, чтобы начать сканирование сетей WiFI!</string>
+    <string name="dialog_need_active_gps_info">Помните, что если вы используете Android 6.0+, вам необходимо активировать GPS.</string>
+    <string name="enableWiFi">Включить Wi-Fi</string>
+    <string name="enablingWiFi">Включение Wi-Fi…</string>
+    <string name="mainNoNetworks">Рядом нет сетей Wi-Fi</string>
+    <string name="mainlayout_info">Нажмите \"Сканировать\", чтобы начать сканирование сетей.</string>
+    <string name="noInfoToClipBoard">Нечего копировать</string>
+    <string name="noNetAvailable">Нет доступных сетей</string>
+    <string name="noSSID">- Скрытая сеть -</string>
+    <string name="noScan">Пожалуйста, нажмите кнопку «Сканировать», чтобы просканировать доступные сети.</string>
+    <string name="request_gps_info">In Android 6.0 or upper it\'s necessary give location permissions to scan WiFi networks.</string>
+    <string name="accept">Принимать</string>
+    <string name="tryConnection">Мы пытаемся подключиться. Потерпи!</string>
+    <string name="writeDeniedDialog">Пожалуйста, разрешите запись во внешнюю память, чтобы иметь возможность сохранить резервную копию.</string>
+    <string name="useRootMethod">Использовать корневой метод</string>
+</resources>

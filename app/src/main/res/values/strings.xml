@@ -1,0 +1,98 @@
+<resources>
+    <string name="app_name" translatable="false">WIFI WPS Pro</string>
+    <string name="aboutMsg">No networks available</string>
+    <string name="about_description">"This Tool Help You Connect To any Network that have wps enabled with pin. It's Only For testing your own network only. App developed with educational purposes. We're not responsible for any misuse.</string>
+    <string name="action_about">About us</string>
+    <string name="action_backupPass" translatable="false">Backup</string>
+    <string name="action_infoPass" translatable="false">Information</string>
+    <string name="action_scan" translatable="false">Scan</string>
+    <string name="action_scanAuto" translatable="false">Automatic</string>
+    <string name="action_scanManual" translatable="false">Manual</string>
+    <string name="action_showpwd">Show password</string>
+    <string name="alertDialog_trycustompin" translatable="false">Other pin</string>
+    <string name="generate0" translatable="false">Generate Pin</string>
+    <string name="alertDialog_trypin">Try</string>
+    <string name="app_descrip">Connect to WiFi using a WPS PIN. This option is only available on 4.1.2.</string>
+    <string name="askWritePermission">To be able to write in the external memory, you need to allow the write permission.</string>
+    <string name="backupFail">There is a problem. Backup not saved!</string>
+    <string name="backupNoRoot">Only available for root users</string>
+    <string name="backupSuccess">Backup done!</string>
+    <string name="cancel">Cancel</string>
+    <string name="chooseMethod_noRoot">Try pin without root</string>
+    <string name="chooseMethod_root">Try pin (root)</string>
+    <string name="choosePIN">Choose a PIN</string>
+    <string name="clipBoard">Copied to clipboard</string>
+    <string name="connected">Connected!</string>
+    <string name="copyClipBoard">Copy</string>
+    <string name="dialogSuccess">It May be Possible that you Already have the Password. Disable it and Connect Again!</string>
+    <string name="dialog_backupPass">Do you want to save a backup of your stored passwords?</string>
+    <string name="dialog_gps_cancel">Remember to enable GPS location to start scanning WiFI networks!</string>
+    <string name="dialog_need_active_gps_info">"Remember, if you're in Android 6.0+, you need to activate GPS."</string>
+    <string name="enableWiFi">Enable WiFi</string>
+    <string name="enablingWiFi">Enabling WiFi…</string>
+    <string name="failDialogMsg" translatable="false"><b>Congratulation! Your network is secure!</b>"
+
+BUT, if you not used the correct pin, try:
+
+"<b>1.</b>" Reduce distance from AP.
+"<b>2.</b>" Try other PIN
+"<b>3.</b>" Maybe AP has MAC filter.
+"<b>4.</b>" Maybe the router has a timeout, try again later.
+</string>
+    <string name="info_gps" translatable="false">"Location permission is only required on Android Marshmallow or upper (6.0+).
+
+So, you can denied this permission if you want, it's not required in your Android version."</string>
+    <string name="invalidPIN" translatable="false">Invalid PIN</string>
+    <string name="lblInsertPIN" translatable="false">Insert PIN:</string>
+    <string name="lblPassword" translatable="false">Pass:</string>
+    <string name="lblSSID" translatable="false">Network:</string>
+    <string name="mainNoNetworks">"There's no WiFi networks near"</string>
+    <string name="mainlayout_info">"Press 'Scan' to start scanning networks</string>
+    <string name="noInfoToClipBoard">Nothing to copy</string>
+    <string name="noNetAvailable">No networks available</string>
+    <string name="noRootInfo" translatable="false">"Your device is not rooted.&lt;br/>&lt;br/>\"Try PIN (root)\" and \"Show passwords\" are only for rooted devices.&lt;br/>&lt;br/>If your device is not rooted, you only can scan AP's and see info about it.&lt;br/>&lt;br/>&lt;a href=https://www.google.com/search?q=root+%1$s&amp;gws_rd=ssl>How to root your %2$s&lt;/a>&lt;br/>&lt;br/>&lt;i>Be a great user! Be a superuser! Be root!&lt;/i>"</string>
+    <string name="noSSID">-- Hidden network --</string>
+    <string name="noScan">"Please, press 'Scan' button to scan available networks.
+
+Be sure that WiFi is enabled."</string>
+    <string name="no_available" translatable="false">No available</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="request_gps_denied_info" translatable="false">"But… why?
+
+Please, allow access to location (GPS) to scan networks."</string>
+    <string name="request_gps_info">"In Android 6.0 or upper it's necessary give location permissions to scan WiFi networks.
+
+"<a href="https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id">https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id</a></string>
+    <string name="saveprocess" translatable="false">Saving…</string>
+    <string name="scanning" translatable="false">Scanning…</string>
+    <string name="title_activity_about" translatable="false">About us</string>
+    <string name="title_activity_password" translatable="false">Passwords</string>
+    <string name="tryConnection">"We are Trying to Connect. Be Patient!
+
+We hope that it's your Network! Seek Permission before testing"</string>
+    <string name="useRootMethod">Use root method</string>
+    <string name="writeDeniedDialog">Please, allow to write in the external memory to be able to save the backup.</string>
+    <string name="accept">Accept</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-5552375484144305/5556748750</string>
+    <string name="banner_ad_unit_id_pwd" translatable="false">ca-app-pub-5552375484144305/5559707001</string>
+    <string name="developer_email" translatable="false">hkdevcompany@gmail.com</string>
+    <string name="ssid_name" translatable="false">Network Name:</string>
+    <string name="mac_name" translatable="false">Network Mac:</string>
+    <string name="wps_enabled" translatable="false">Wps Enabled:</string>
+    <string name="encryption_type" translatable="false">Encryption Type:</string>
+    <string name="dbm" translatable="false">dBm</string>
+    <string name="secured" translatable="false">Not Secured</string>
+    <string name="passwords" translatable="false">Passwords</string>
+    <string name="add_web" translatable="false">https://sites.google.com/view/privacy-policy-internetbooster/accueil</string>
+    <string name="email" translatable="false">hkdevcompany@gmail.com</string>
+    <string name="info_title" translatable="false">Note</string>
+    <string name="info_message" translatable="false">Remember, you NEED to be ROOT if you are under Kitkat or below.
+
+If you are under Lollipop or upper, you can choose between ROOT and NO ROOT method."</string>
+    <string name="action_pingen" translatable="false">Pin Generator</string>
+    <string name="enter_mac" translatable="false">Enter Mac Address</string>
+    <string name="generate" translatable="false">Generate</string>
+    <string name="wps_pin_is" translatable="false">WPS Pin is:</string>
+    <string name="banner_home_footer" translatable="false">ca-app-pub-5552375484144305/5559936119</string>
+    <string name="interstitial_full_screen" translatable="false">ca-app-pub-5552375484144305/5558135319</string>
+</resources>

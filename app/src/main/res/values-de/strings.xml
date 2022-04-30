@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="aboutMsg">Keine Netzwerke verfügbar</string>
+    <string name="about_description">Dieses Tool hilft Ihnen, sich mit jedem Netzwerk zu verbinden, in dem wps mit Pin aktiviert ist. Nur zum Testen Ihres eigenen Netzwerks. App für Bildungszwecke entwickelt. Wir sind nicht verantwortlich für Missbrauch.</string>
+    <string name="action_about">Über uns</string>
+    <string name="action_showpwd">Passwort anzeigen</string>
+    <string name="alertDialog_trypin">Versuchen</string>
+    <string name="app_descrip">Stellen Sie mit einer WPS-PIN eine WLAN-Verbindung her. Diese Option ist nur in 4.1.2 verfügbar.</string>
+    <string name="askWritePermission">Um in den externen Speicher schreiben zu können, müssen Sie die Schreibberechtigung zulassen.</string>
+    <string name="backupFail">Es gibt ein Problem. Sicherung nicht gespeichert!</string>
+    <string name="backupNoRoot">Nur für Root-Benutzer verfügbar</string>
+    <string name="backupSuccess">Sicherung fertig!</string>
+    <string name="cancel">Stornieren</string>
+    <string name="chooseMethod_noRoot">Pin ohne Root ausprobieren</string>
+    <string name="chooseMethod_root">Pin versuchen (root)</string>
+    <string name="choosePIN">Wählen Sie eine PIN</string>
+    <string name="clipBoard">In die Zwischenablage kopiert</string>
+    <string name="connected">In Verbindung gebracht!</string>
+    <string name="copyClipBoard">Kopieren</string>
+    <string name="dialogSuccess">Möglicherweise haben Sie bereits das Passwort. Deaktivieren Sie es und verbinden Sie sich erneut!</string>
+    <string name="dialog_backupPass">Möchten Sie ein Backup Ihrer gespeicherten Passwörter speichern?</string>
+    <string name="dialog_gps_cancel">Denken Sie daran, den GPS-Standort zu aktivieren, um mit dem Scannen von WLAN-Netzwerken zu beginnen!</string>
+    <string name="dialog_need_active_gps_info">Denken Sie daran, dass Sie GPS aktivieren müssen, wenn Sie Android 6.0 oder höher verwenden.</string>
+    <string name="enableWiFi">WLAN aktivieren</string>
+    <string name="enablingWiFi">WLAN aktivieren…</string>
+    <string name="mainNoNetworks">Es gibt keine WLAN-Netzwerke in der Nähe</string>
+    <string name="mainlayout_info">Drücken Sie \'Scan\', um das Scannen von Netzwerken zu starten</string>
+    <string name="noInfoToClipBoard">Nichts zu kopieren</string>
+    <string name="noNetAvailable">Keine Netzwerke verfügbar</string>
+    <string name="noSSID">-- Verstecktes Netzwerk --</string>
+    <string name="noScan">Bitte drücken Sie die Schaltfläche \"Scannen\", um verfügbare Netzwerke zu scannen.</string>
+    <string name="request_gps_info">In Android 6.0 oder höher ist es erforderlich, Standortberechtigungen zu erteilen, um WLAN-Netzwerke zu scannen.</string>
+    <string name="tryConnection">Wir versuchen, eine Verbindung herzustellen. Sei geduldig!</string>
+    <string name="useRootMethod">Root-Methode verwenden</string>
+    <string name="writeDeniedDialog">Bitte erlauben Sie das Schreiben in den externen Speicher, um das Backup speichern zu können.</string>
+    <string name="accept">Akzeptieren</string>
+</resources>
