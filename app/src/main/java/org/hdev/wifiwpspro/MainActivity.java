@@ -47,9 +47,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -65,13 +63,12 @@ import eu.chainfire.libsuperuser.Shell.SH;
 import eu.chainfire.libsuperuser.Shell.SU;
 
 public class MainActivity extends AppCompatActivity {
-    protected static boolean ScannAutomatique;
+    protected static boolean scanauto;
     protected static boolean firstversion = true;
     protected static boolean locationactvity = false;
     protected static boolean controlReciever;
     protected static boolean activatGPS = false;
-    protected static boolean shouldUserRoot = true;
-    protected static WifiManager wff;
+    protected static WifiManager wifi_info;
     protected final Context context = this;
     private final int PERMISSIONS_REQUEST_LOCATION = 100;
     protected ArrayAdapter adapter;
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
 
-
+//Checking version for lcocation services
     private static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
         if (VERSION.SDK_INT >= 19) {
@@ -109,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
+            //Welcome message
             setContentView(R.layout.scanning_page);
             settoolbar();
             new LovelyInfoDialog(this)
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
         showPermissionRequestInfo();
     }
-
+//toolbar configurations
     private void settoolbar() {
         RelativeLayout layout = findViewById(R.id.rellor);
 
@@ -241,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                     latestver = position;
                 }
                 if (networking.getINFO().contains("WPS")) {
-                    showNetworkOptionsDialog(networking);
+
                 } else {
                     Toast.makeText(getApplicationContext(), "This network does not have WPS enabled", Toast.LENGTH_SHORT).show();
                 }
@@ -253,13 +251,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void configWiFiReceiver() {
-        wff = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        wifi_info = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         receptorWifi = new WifiReceiver();
-        if (!wff.isWifiEnabled()) {
+        if (!wifi_info.isWifiEnabled()) {
             Toast.makeText(this, R.string.enablingWiFi, Toast.LENGTH_SHORT).show();
-            wff.setWifiEnabled(true);
+            wifi_info.setWifiEnabled(true);
         }
-        ScannAutomatique = false;
+        scanauto = false;
         controlReciever = false;
         registerReceiver(receptorWifi, new IntentFilter("android.net.wifi.SCAN_RESULTS"));
     }
@@ -269,21 +267,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void showScan() {
-        if (wff == null) {
+        if (wifi_info == null) {
             configWiFiReceiver();
         }
-        if (!wff.isWifiEnabled()) {
+        if (!wifi_info.isWifiEnabled()) {
             Toast.makeText(this, R.string.enablingWiFi, Toast.LENGTH_SHORT).show();
-            wff.setWifiEnabled(true);
+            wifi_info.setWifiEnabled(true);
         }
         controlReciever = true;
-        wff.startScan();
+        wifi_info.startScan();
         Toast.makeText(this, R.string.scanning, Toast.LENGTH_SHORT).show();
     }
 
     protected void NetInfo(List<ScanResult> results) {
         int i = 0;
-        if (!ScannAutomatique) {
+        if (!scanauto) {
             controlReciever = false;
         }
         if (results != null) {
@@ -323,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
         return (capabilities.contains("WPA2") || capabilities.contains("WPA") || capabilities.contains("WEP")) ? R.mipmap.ic_lock : R.mipmap.ic_lock_open;
     }
 
-
+//The Received Signal Strength Indicator (RSSI) is an estimation of a device's ability to hear, detect, and receive signals from any wireless access point or Wi-Fi router.
     private int getWiFi(int rssi) {
         switch (WifiManager.calculateSignalLevel(rssi, 4)) {
             case 0:
@@ -338,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                 return -1;
         }
     }
-
+//scan button
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_page, menu);
         ActionBar ab = getSupportActionBar();
@@ -354,50 +352,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showNetworkOptionsDialog(Networking networking) {
-        Builder builder = new Builder(context);
-        selectedESSID = networking.getESSID();
-        selectedBSSID = networking.getBSSID();
 
-        final String BSSID = selectedBSSID;
-        if (VERSION.SDK_INT >= 21) {
-            View checkBoxView = View.inflate(this, R.layout.root_checker, null);
-            final CheckBox checkBox = checkBoxView.findViewById(R.id.caseaCocher);
-            checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    shouldUserRoot = isChecked;
-                    checkBox.setChecked(MainActivity.shouldUserRoot);
-                    getPreferences(MODE_PRIVATE).edit().putBoolean("useRoot", shouldUserRoot).apply();
-                }
-            });
-            checkBox.setText(getString(R.string.useRootMethod));
-            boolean useRootSP = getPreferences(MODE_PRIVATE).getBoolean("useRoot", false);
-            shouldUserRoot = useRootSP;
-            checkBox.setChecked(useRootSP);
-            builder.setView(checkBoxView);
-        }
-        List<String> your_array_list = new ArrayList();
-
-        builder.setSingleChoiceItems(new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, your_array_list), intent.getIntExtra("List_Position", 0), new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                intent.putExtra("List_Position", which);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                intent.putExtra("List_Position", 0);
-            }
-        });
-        builder.setNeutralButton(R.string.alertDialog_trycustompin, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-            }
-        });
-
-    }
-
+//Root option
 
     private void showNoRootDeviceDialog() {
         String model = (SH.run("getprop ro.product.model").get(0)).replace(" ", "+");
@@ -411,30 +367,7 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void showSuccessDialog() {
-        Builder builder = new Builder(this);
-        builder.setTitle(getResources().getString(R.string.connected));
-        builder.setMessage(getString(R.string.lblSSID) + " " + selectedESSID + "\n" + getString(R.string.lblPassword) + " " + selectedPSK + "\n\n" + getString(R.string.dialogSuccess));
-        builder.setNegativeButton(R.string.cancel, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setNeutralButton(R.string.copyClipBoard, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                if (selectedPSK.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), R.string.noInfoToClipBoard, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                ((ClipboardManager) getSystemService(CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("", selectedPSK));
-                Toast.makeText(getApplicationContext(), R.string.clipBoard, Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setCancelable(false);
-        builder.create();
-        builder.show();
-    }
+
 
 
     protected void onPause() {
@@ -452,8 +385,8 @@ public class MainActivity extends AppCompatActivity {
         if (receptorWifi != null) {
             registerReceiver(receptorWifi, new IntentFilter("android.net.wifi.SCAN_RESULTS"));
         }
-        if (ScannAutomatique) {
-            wff.startScan();
+        if (scanauto) {
+            wifi_info.startScan();
         }
         if (locationactvity) {
             if (isLocationEnabled(context)) {
@@ -472,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
             getPreferences(MODE_PRIVATE).edit().putBoolean("firstAppBoot", false).apply();
         }
     }
-
+// Message if location services weren't enabled
     private void buildAlertMessageNoGps() {
         new Builder(this).setMessage(R.string.dialog_need_active_gps_info).setCancelable(false).setPositiveButton((int) R.string.ok, new OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -491,17 +424,16 @@ public class MainActivity extends AppCompatActivity {
     @TargetApi(21)
     private void connectWithoutRoot(String BSSID, String pin) {
         if (BSSID != null && pin != null) {
-            if (wff == null) {
-                wff = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            if (wifi_info == null) {
+                wifi_info = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             }
-            if (!wff.isWifiEnabled()) {
+            if (!wifi_info.isWifiEnabled()) {
                 Toast.makeText(this, R.string.enablingWiFi, Toast.LENGTH_SHORT).show();
-                wff.setWifiEnabled(true);
+                wifi_info.setWifiEnabled(true);
             }
             final ConnectivityManager cManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
             NetworkInfo mWifi = cManager.getActiveNetworkInfo();
-            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && wff.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                showSuccessDialog();
+            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
                 return;
             }
             final ProgressDialog progressDialog = new ProgressDialog(context);
@@ -516,7 +448,7 @@ public class MainActivity extends AppCompatActivity {
                             progressDialog.setCancelable(false);
                             progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), new OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    wff.cancelWps(null);
+                                    wifi_info.cancelWps(null);
                                     dialog.dismiss();
                                 }
                             });
@@ -524,18 +456,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-
+//
                 public void onSucceeded() {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             NetworkInfo mWifi = cManager.getActiveNetworkInfo();
-                            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && !MainActivity.wff.getConnectionInfo().getBSSID().equalsIgnoreCase(selectedBSSID)) {
+                            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && !MainActivity.wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(selectedBSSID)) {
                                 progressDialog.dismiss();
 
                             }
                             progressDialog.dismiss();
 
-                            showSuccessDialog();
                         }
                     });
                 }
@@ -553,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
             wpsInfo.setup = 2;
             wpsInfo.pin = pin;
             wpsInfo.BSSID = BSSID;
-            wff.startWps(wpsInfo, wpsCallback);
+            wifi_info.startWps(wpsInfo, wpsCallback);
         }
     }
 
@@ -575,10 +506,10 @@ public class MainActivity extends AppCompatActivity {
             ConnectivityManager cManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
             NetworkInfo mWifi = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             if (mWifi.isConnected()) {
-                if (wff.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
+                if (wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
                     return CONNECTED;
                 }
-                wff.disconnect();
+                wifi_info.disconnect();
                 while (mWifi.isConnected()) {
                     mWifi = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                 }
@@ -595,7 +526,7 @@ public class MainActivity extends AppCompatActivity {
             long time = System.currentTimeMillis();
             boolean out = false;
             while (!out && System.currentTimeMillis() < 10000 + time) {
-                if (cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected() && wff.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
+                if (cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected() && wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
                     out = true;
                 }
             }
@@ -607,12 +538,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPreExecute() {
-            if (wff == null) {
-                wff = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            if (wifi_info == null) {
+                wifi_info = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             }
-            if (!wff.isWifiEnabled()) {
+            if (!wifi_info.isWifiEnabled()) {
                 Toast.makeText(MainActivity.this, getString(R.string.enablingWiFi), Toast.LENGTH_SHORT).show();
-                wff.setWifiEnabled(true);
+                wifi_info.setWifiEnabled(true);
             }
             pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pDialog.setMessage(getResources().getString(R.string.tryConnection));
@@ -636,7 +567,6 @@ public class MainActivity extends AppCompatActivity {
                 case NOT_CONNECTED:
                     return;
                 case CONNECTED:
-                    showSuccessDialog();
                     return;
                 default:
 
@@ -649,8 +579,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onReceive(Context c, Intent intent) {
-            if (ScannAutomatique || controlReciever) {
-                NetInfo(wff.getScanResults());
+            if (scanauto || controlReciever) {
+                NetInfo(wifi_info.getScanResults());
             }
         }
     }
