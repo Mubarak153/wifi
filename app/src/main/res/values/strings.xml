@@ -1,20 +1,15 @@
 <resources>
-    <string name="app_name" translatable="false">Andriod GPs/WIFI</string>
+    <string name="app_name" >Android GPs/WIFI</string>
     <string name="aboutMsg">No networks available</string>
     <string name="about_description">"This Tool Help You Connect To any Network that have wps enabled with pin. It's Only For testing your own network only. App developed with educational purposes. We're not responsible for any misuse.</string>
-    <string name="action_about">About us</string>
     <string name="action_backupPass" translatable="false">Backup</string>
     <string name="action_infoPass" translatable="false">Information</string>
     <string name="action_scan" translatable="false">Scan</string>
     <string name="action_scanAuto" translatable="false">Automatic</string>
     <string name="action_scanManual" translatable="false">Manual</string>
     <string name="alertDialog_trycustompin" translatable="false">Other pin</string>
-    <string name="generate0" translatable="false">Generate Pin</string>
     <string name="alertDialog_trypin">Try</string>
     <string name="askWritePermission">To be able to write in the external memory, you need to allow the write permission.</string>
-    <string name="backupFail">There is a problem. Backup not saved!</string>
-    <string name="backupNoRoot">Only available for root users</string>
-    <string name="backupSuccess">Backup done!</string>
     <string name="cancel">Cancel</string>
     <string name="clipBoard">Copied to clipboard</string>
     <string name="connected">Connected!</string>

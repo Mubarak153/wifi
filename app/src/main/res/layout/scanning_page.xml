@@ -45,6 +45,6 @@
 
     <include
 
-        layout="@layout/content_home_act"/>
+        layout="@layout/home_page"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -75,20 +75,18 @@ public class MainActivity extends AppCompatActivity {
     protected final Context context = this;
     private final int PERMISSIONS_REQUEST_LOCATION = 100;
     protected ArrayAdapter adapter;
-    protected String prompte;
     protected boolean firstBooot = true;
     protected Intent intent;
     protected int latestver = 0;
     protected ListView list;
     protected ArrayList<Networking> networkingList;
-    protected String pinCode;
     protected WifiReceiver receptorWifi;
     protected String selectedBSSID;
     protected String selectedESSID;
     protected String selectedPSK;
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
-   
+
 
     private static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
@@ -224,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
-        setContentView(R.layout.activity_main_nouveu);
+        setContentView(R.layout.home_page2);
         settoolbar();
 
 
@@ -401,24 +399,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    protected void showChooseMethodDialog() {
-        if (VERSION.SDK_INT < 21) {
-            if (SU.available()) {
-                new CallSU(prompte, selectedBSSID).execute();
-            } else {
-                showNoRootDeviceDialog();
-            }
-        } else if (!shouldUserRoot) {
-            connectWithoutRoot(selectedBSSID, pinCode);
-        } else if (SU.available()) {
-            new CallSU(prompte, selectedBSSID).execute();
-        } else {
-            showNoRootDeviceDialog();
-        }
-    }
-
-
     private void showNoRootDeviceDialog() {
         String model = (SH.run("getprop ro.product.model").get(0)).replace(" ", "+");
         String brand = SH.run("getprop ro.product.brand").get(0);
@@ -455,7 +435,6 @@ public class MainActivity extends AppCompatActivity {
         builder.create();
         builder.show();
     }
-
 
 
     protected void onPause() {
