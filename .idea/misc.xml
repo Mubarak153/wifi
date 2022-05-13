@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/drawable/information.xml" value="0.141" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/drawable/save.xml" value="0.141" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/activity_about_us.xml" value="0.3500905797101449" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/activity_generator.xml" value="0.3500905797101449" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/activity_main_nouveu.xml" value="0.1" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/activity_main_scanning.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/card_row.xml" value="0.1068840579710145" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/content_act.xml" value="0.1" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/content_home_act.xml" value="0.1" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/content_mot_de_passe.xml" value="0.13" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/listitem_mot_de_passe.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/listitem_tit.xml" value="0.17980072463768115" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/montrer_mot_depasse.xml" value="0.17980072463768115" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/rien_dutout.xml" value="0.1" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/layout/root_case_cocher.xml" value="0.1" />
+        <entry key="..\:/Users/kadir/AndroidStudioProjects/wifi/app/src/main/res/menu/menu_mot_depasse.xml" value="0.3625" />
         <entry key="..\:/Users/kadir/Downloads/codester-32741-wifi-wps-pro-with-admob-ads-android-app/WIFI WPS Pro/app/src/main/res/layout/activity_generator.xml" value="0.1259259259259259" />
         <entry key="..\:/Users/kadir/Downloads/codester-32741-wifi-wps-pro-with-admob-ads-android-app/WIFI WPS Pro/app/src/main/res/layout/activity_main_nouveu.xml" value="0.1259259259259259" />
       </map>

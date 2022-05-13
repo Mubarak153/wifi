@@ -2,7 +2,7 @@ package org.hdev.wifiwpspro;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
+
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,7 +15,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
+
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WpsCallback;
@@ -26,6 +26,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.ActionBar;
@@ -33,15 +34,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.text.Html;
-import android.text.InputFilter;
-import android.text.InputFilter.LengthFilter;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -51,19 +50,15 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
+
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell.SH;
@@ -71,8 +66,8 @@ import eu.chainfire.libsuperuser.Shell.SU;
 
 public class MainActivity extends AppCompatActivity {
     protected static boolean ScannAutomatique;
-    protected static boolean premierOnCreate = true;
-    protected static boolean locatParametreActivity = false;
+    protected static boolean firstversion = true;
+    protected static boolean locationactvity = false;
     protected static boolean controlReciever;
     protected static boolean activatGPS = false;
     protected static boolean shouldUserRoot = true;
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     protected String prompte;
     protected boolean firstBooot = true;
     protected Intent intent;
-    protected int derniereNet = 0;
+    protected int latestver = 0;
     protected ListView list;
     protected ArrayList<Networking> networkingList;
     protected String pinCode;
@@ -93,10 +88,7 @@ public class MainActivity extends AppCompatActivity {
     protected String selectedPSK;
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
-    protected String wpa_code_pin;
-    private AdView mAdView;
-    InterstitialAd mInterstitialAd;
-    AdRequest adRequestint;
+   
 
     private static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
@@ -113,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (premierOnCreate) {
+        if (firstversion) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 Window window = getWindow();
                 window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
-            setContentView(R.layout.activity_main_scanning);
+            setContentView(R.layout.scanning_page);
             settoolbar();
             new LovelyInfoDialog(this)
                     .setTopColorRes(R.color.colorAccent)
@@ -156,35 +148,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
     }
 
-    private String getDeviceName() {
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        if (model.startsWith(manufacturer)) {
-            return model.toUpperCase();
-        }
-        return manufacturer.toUpperCase() + " " + model;
-    }
-
-    public void shareApp() {
-        try {
-            Intent i = new Intent("android.intent.action.SEND");
-            i.putExtra("android.intent.extra.SUBJECT", getString(R.string.app_name));
-            i.putExtra("android.intent.extra.TEXT", "https://play.google.com/store/apps/details?id=" + getPackageName());
-            startActivity(Intent.createChooser(i, "Choose one"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void rateApp() {
-        Intent goToMarket = new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getPackageName()));
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        try {
-            startActivity(goToMarket);
-        } catch (ActivityNotFoundException e) {
-            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
-        }
-    }
 
     private void showInfoAboutGPSBelowAndroidM() {
         if (this.firstBooot) {
@@ -203,12 +166,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         activatGPS = true;
-        if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != 0  || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
+        if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
             Builder builder = new Builder(this);
             builder.setPositiveButton(R.string.ok, new OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.ACCESS_COARSE_LOCATION" , "android.permission.ACCESS_FINE_LOCATION" , "android.permission.ACCESS_BACKGROUND_LOCATION"}, PERMISSIONS_REQUEST_LOCATION);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_BACKGROUND_LOCATION"}, PERMISSIONS_REQUEST_LOCATION);
                 }
             });
             builder.setCancelable(false);
@@ -224,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.ok, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.ACCESS_COARSE_LOCATION","android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_BACKGROUND_LOCATION"}, PERMISSIONS_REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_BACKGROUND_LOCATION"}, PERMISSIONS_REQUEST_LOCATION);
             }
         });
         builder.setCancelable(false);
@@ -263,10 +226,10 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main_nouveu);
         settoolbar();
-        loadAds();
-        loadInterstitialAd();
+
+
         intent = new Intent().putExtra("List_Position", MODE_PRIVATE);
-        wpa_code_pin = Extra.loadLib(context);
+
         networkingList = new ArrayList();
         NetAdapter adaptador = new NetAdapter(this, networkingList);
         adapter = adaptador;
@@ -275,9 +238,9 @@ public class MainActivity extends AppCompatActivity {
         list.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Networking networking = (Networking) list.getItemAtPosition(position);
-                if (derniereNet != position) {
+                if (latestver != position) {
                     intent.putExtra("List_Position", MODE_PRIVATE);
-                    derniereNet = position;
+                    latestver = position;
                 }
                 if (networking.getINFO().contains("WPS")) {
                     showNetworkOptionsDialog(networking);
@@ -290,17 +253,6 @@ public class MainActivity extends AppCompatActivity {
         configWiFiReceiver();
     }
 
-    private void loadInterstitialAd() {
-        adRequestint = new AdRequest.Builder().build();
-        mInterstitialAd = new InterstitialAd(getApplicationContext());
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_full_screen));
-        mInterstitialAd.loadAd(adRequestint);
-    }
-    private void showInterstitial() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
-    }
 
     private void configWiFiReceiver() {
         wff = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
@@ -373,12 +325,6 @@ public class MainActivity extends AppCompatActivity {
         return (capabilities.contains("WPA2") || capabilities.contains("WPA") || capabilities.contains("WEP")) ? R.mipmap.ic_lock : R.mipmap.ic_lock_open;
     }
 
-    private void loadAds() {
-        //ADS
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
 
     private int getWiFi(int rssi) {
         switch (WifiManager.calculateSignalLevel(rssi, 4)) {
@@ -396,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_principale, menu);
+        getMenuInflater().inflate(R.menu.menu_page, menu);
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE);
@@ -409,45 +355,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_about) {
-            showAbout();
-        } else if (id == R.id.action_scan) {
-            if (!ScannAutomatique) {
-                if (!initialisationSYS) {
-                    initialisationSYS = true;
-                    loadSystem();
-                }
-                if (!activatGPS || isLocationEnabled(context)) {
-                    intent.putExtra("List_Position", MODE_PRIVATE);
-                    showScan();
-                } else {
-                    buildAlertMessageNoGps();
-                }
-            }
-       // } else if (id == R.id.action_showpwd) {
-           // startActivity(new Intent(this, MotdePasseActivity.class));
-        } else if (id == R.id.action_pingen) {
-            Intent i = new Intent(MainActivity.this, Generator.class);
-            startActivity(i);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showAbout() {
-        startActivity(new Intent(this, AboutActivity.class));
-    }
 
     private void showNetworkOptionsDialog(Networking networking) {
         Builder builder = new Builder(context);
         selectedESSID = networking.getESSID();
         selectedBSSID = networking.getBSSID();
-        String[] charSeq = Extra.calculePIN(networking);
-        Log.d("Array List Values", String.valueOf(charSeq));
+
         final String BSSID = selectedBSSID;
         if (VERSION.SDK_INT >= 21) {
-            View checkBoxView = View.inflate(this, R.layout.root_case_cocher, null);
+            View checkBoxView = View.inflate(this, R.layout.root_checker, null);
             final CheckBox checkBox = checkBoxView.findViewById(R.id.caseaCocher);
             checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -463,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(checkBoxView);
         }
         List<String> your_array_list = new ArrayList();
-        Collections.addAll(your_array_list, charSeq);
+
         builder.setSingleChoiceItems(new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, your_array_list), intent.getIntExtra("List_Position", 0), new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 intent.putExtra("List_Position", which);
@@ -478,56 +394,13 @@ public class MainActivity extends AppCompatActivity {
         builder.setNeutralButton(R.string.alertDialog_trycustompin, new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                showCustomPINDialog(BSSID);
+
             }
         });
-        final String[] finalCharSeq = charSeq;
-        builder.setPositiveButton(R.string.alertDialog_trypin, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                pinCode = finalCharSeq[intent.getIntExtra("List_Position", 0)];
-                prompte = wpa_code_pin + " IFNAME=wlan0 wps_reg " + BSSID + " " + pinCode;
-                dialog.dismiss();
-                showInterstitial();
-                showChooseMethodDialog();
-            }
-        });
-        builder.setCancelable(false);
-        builder.setTitle(R.string.choosePIN);
-        builder.create();
-        builder.show();
+
     }
 
-    private void showCustomPINDialog(final String BSSID) {
-        Builder builder = new Builder(this.context);
-        this.selectedBSSID = BSSID;
-        final EditText custompin = new EditText(context);
-        custompin.setInputType(InputType.TYPE_CLASS_NUMBER);
-        custompin.setMaxLines(1);
-        custompin.setFilters(new InputFilter[]{new LengthFilter(8)});
-        builder.setView(custompin);
-        builder.setTitle(R.string.lblInsertPIN);
-        builder.create();
-        builder.setNegativeButton(R.string.cancel, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton(R.string.alertDialog_trypin, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                pinCode = custompin.getText().toString();
-                prompte = wpa_code_pin + " IFNAME=wlan0 wps_reg " + BSSID + " " + pinCode;
-                if (pinCode.length() != 8) {
-                    Toast.makeText(context, getString(R.string.invalidPIN), Toast.LENGTH_SHORT).show();
-                    showCustomPINDialog(selectedBSSID);
-                    return;
-                }
-                dialog.dismiss();
-                showChooseMethodDialog();
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
+
 
     protected void showChooseMethodDialog() {
         if (VERSION.SDK_INT < 21) {
@@ -545,22 +418,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected boolean findPSK() {
-        List<String> result = Extra.parseSupplicant();
-        boolean haveSSID = false;
-        selectedPSK = getString(R.string.no_available);
-        for (String tmp : result) {
-            if (!haveSSID && tmp.substring(1).contains(selectedESSID)) {
-                haveSSID = true;
-            } else if (haveSSID && tmp.substring(0, 1).equalsIgnoreCase("s")) {
-                haveSSID = false;
-            } else if (haveSSID && tmp.substring(0, 1).equalsIgnoreCase("p")) {
-                selectedPSK = tmp.substring(1);
-                return true;
-            }
-        }
-        return false;
-    }
 
     private void showNoRootDeviceDialog() {
         String model = (SH.run("getprop ro.product.model").get(0)).replace(" ", "+");
@@ -625,9 +482,9 @@ public class MainActivity extends AppCompatActivity {
         if (ScannAutomatique) {
             wff.startScan();
         }
-        if (locatParametreActivity) {
+        if (locationactvity) {
             if (isLocationEnabled(context)) {
-                locatParametreActivity = false;
+                locationactvity = false;
                 showScan();
             } else {
                 buildAlertMessageNoGps();
@@ -647,7 +504,7 @@ public class MainActivity extends AppCompatActivity {
         new Builder(this).setMessage(R.string.dialog_need_active_gps_info).setCancelable(false).setPositiveButton((int) R.string.ok, new OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                locatParametreActivity = true;
+                locationactvity = true;
             }
         }).setNegativeButton(android.R.string.cancel, new OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -671,7 +528,6 @@ public class MainActivity extends AppCompatActivity {
             final ConnectivityManager cManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
             NetworkInfo mWifi = cManager.getActiveNetworkInfo();
             if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && wff.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                findPSK();
                 showSuccessDialog();
                 return;
             }
@@ -705,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
                                 showFailDialog();
                             }
                             progressDialog.dismiss();
-                            findPSK();
+
                             showSuccessDialog();
                         }
                     });
@@ -747,7 +603,6 @@ public class MainActivity extends AppCompatActivity {
             NetworkInfo mWifi = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             if (mWifi.isConnected()) {
                 if (wff.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                    findPSK();
                     return CONNECTED;
                 }
                 wff.disconnect();
@@ -771,7 +626,7 @@ public class MainActivity extends AppCompatActivity {
                     out = true;
                 }
             }
-            return findPSK() ? CONNECTED : NOT_CONNECTED;
+            return null;
         }
 
         protected void onProgressUpdate(Integer... values) {

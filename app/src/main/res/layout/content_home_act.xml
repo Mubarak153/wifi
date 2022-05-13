@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main_scanning">
+    tools:showIn="@layout/scanning_page">
 
     <TextView
         android:layout_width="match_parent"

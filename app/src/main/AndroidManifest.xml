@@ -25,13 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="org.hdev.wifiwpspro.MotdePasseActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="org.hdev.wifiwpspro.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="org.hdev.wifiwpspro.Generator" />
     </application>
 
 </manifest>
