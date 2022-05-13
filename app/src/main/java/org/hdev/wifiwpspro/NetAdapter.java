@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.core.content.ContextCompat;
 
+import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -32,23 +33,23 @@ public class NetAdapter extends ArrayAdapter {
         TextView lblESSID = item.findViewById(R.id.ESSID_ID);
         TextView wpsEnabled = item.findViewById(R.id.wps_activated);
         TextView secured = item.findViewById(R.id.isOK);
-        ((TextView) item.findViewById(R.id.INFO)).setText(context.getString(R.string.encryption_type)+" "+ Extra.capabilitiesTypeResume((networkingList.get(position)).getINFO()));
+        ((TextView) item.findViewById(R.id.INFO)).setText(context.getString(R.string.encryption_type)+" "+ Extra.encryp_type((networkingList.get(position)).getINFO()));
         if ((networkingList.get(position)).getINFO().contains("WPS")) {
 //            lblESSID.setTextColor(ContextCompat.getColor(context, R.color.color_green_new));
             wpsEnabled.setText(context.getString(R.string.wps_enabled)+" Yes");
             item.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.color_green));
-            wifiSignal.setColorFilter(ContextCompat.getColor(context, R.color.color_green_new), android.graphics.PorterDuff.Mode.SRC_IN);
+            wifiSignal.setColorFilter(ContextCompat.getColor(context, R.color.color_green_new), PorterDuff.Mode.SRC_IN);
 
         } else {
 //            lblESSID.setTextColor(ContextCompat.getColor(context, R.color.color_red_new));
             wpsEnabled.setText(context.getString(R.string.wps_enabled)+" No");
             item.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.color_red));
-            wifiSignal.setColorFilter(ContextCompat.getColor(context, R.color.color_red_new), android.graphics.PorterDuff.Mode.SRC_IN);
+            wifiSignal.setColorFilter(ContextCompat.getColor(context, R.color.color_red_new), PorterDuff.Mode.SRC_IN);
 
         }
-        if(Extra.capabilitiesTypeResume((networkingList.get(position)).getINFO()).contains("WPA") ||
-                Extra.capabilitiesTypeResume((networkingList.get(position)).getINFO()).contains("WPA2") ||
-                Extra.capabilitiesTypeResume((networkingList.get(position)).getINFO()).contains("WEP")){
+        if(Extra.encryp_type((networkingList.get(position)).getINFO()).contains("WPA") ||
+                Extra.encryp_type((networkingList.get(position)).getINFO()).contains("WPA2") ||
+                Extra.encryp_type((networkingList.get(position)).getINFO()).contains("WEP")){
             secured.setText("Secured");
         }
         String essid = (networkingList.get(position)).getESSID();

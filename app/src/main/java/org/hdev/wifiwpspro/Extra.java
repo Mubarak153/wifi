@@ -3,20 +3,21 @@ package org.hdev.wifiwpspro;
 
 public class Extra {
 
-    public static String capabilitiesTypeResume(String capabilities) {
-        if (capabilities.contains("WPA2")) {
+
+    public static String encryp_type(String encryp) {
+        if (encryp.contains("WPA2")) {
             return "[WPA2]";
         }
-        if (capabilities.contains("WPA")) {
+        if (encryp.contains("WPA")) {
             return "[WPA]";
         }
-        if (capabilities.contains("WEP")) {
+        if (encryp.contains("WEP")) {
             return "[WEP]";
         }
-        if (capabilities.contains("ESS")) {
+        if (encryp.contains("ESS")) {
             return "[OPEN]";
         }
-        return capabilities;
+        return encryp;
     }
 
 

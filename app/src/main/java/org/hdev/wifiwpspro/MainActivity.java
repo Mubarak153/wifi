@@ -58,7 +58,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell.SH;
-import eu.chainfire.libsuperuser.Shell.SU;
 
 public class MainActivity extends AppCompatActivity {
     protected static boolean scanauto;
@@ -77,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
     protected ArrayList<Networking> networkingList;
     protected WifiReceiver receptorWifi;
     protected String selectedBSSID;
-    protected String selectedESSID;
-    protected String selectedPSK;
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
 
