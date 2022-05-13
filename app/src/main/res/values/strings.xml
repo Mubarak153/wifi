@@ -8,7 +8,6 @@
     <string name="action_scan" translatable="false">Scan</string>
     <string name="action_scanAuto" translatable="false">Automatic</string>
     <string name="action_scanManual" translatable="false">Manual</string>
-    <string name="action_showpwd">Show password</string>
     <string name="alertDialog_trycustompin" translatable="false">Other pin</string>
     <string name="generate0" translatable="false">Generate Pin</string>
     <string name="alertDialog_trypin">Try</string>
@@ -17,7 +16,6 @@
     <string name="backupNoRoot">Only available for root users</string>
     <string name="backupSuccess">Backup done!</string>
     <string name="cancel">Cancel</string>
-    <string name="chooseMethod_noRoot">Try pin without root</string>
     <string name="clipBoard">Copied to clipboard</string>
     <string name="connected">Connected!</string>
     <string name="copyClipBoard">Copy</string>
@@ -44,7 +42,6 @@ So, you can denied this permission if you want, it's not required in your Androi
     <string name="mainNoNetworks">"There's no WiFi networks near"</string>
     <string name="mainlayout_info">"Press 'Scan' to start scanning networks</string>
     <string name="noInfoToClipBoard">Nothing to copy</string>
-    <string name="noNetAvailable">No networks available</string>
     <string name="noRootInfo" translatable="false">"Your device is not rooted.&lt;br/>&lt;br/>\"Try PIN (root)\" and \"Show passwords\" are only for rooted devices.&lt;br/>&lt;br/>If your device is not rooted, you only can scan AP's and see info about it.&lt;br/>&lt;br/>&lt;a href=https://www.google.com/search?q=root+%1$s&amp;gws_rd=ssl>How to root your %2$s&lt;/a>&lt;br/>&lt;br/>&lt;i>Be a great user! Be a superuser! Be root!&lt;/i>"</string>
     <string name="noSSID">-- Hidden network --</string>
     <string name="noScan">"Please, press 'Scan' button to scan available networks.
@@ -60,8 +57,6 @@ Please, allow access to location (GPS) to scan networks."</string>
 "<a href="Welcome to Andriod Gps ">https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id</a></string>
     <string name="saveprocess" translatable="false">Saving…</string>
     <string name="scanning" translatable="false">Scanning…</string>
-    <string name="title_activity_about" translatable="false">About us</string>
-    <string name="title_activity_password" translatable="false">Passwords</string>
     <string name="tryConnection">"We are Trying to Connect. Be Patient!
 
 We hope that it's your Network! Seek Permission before testing"</string>
@@ -77,17 +72,10 @@ We hope that it's your Network! Seek Permission before testing"</string>
     <string name="encryption_type" translatable="false">Encryption Type:</string>
     <string name="dbm" translatable="false">dBm</string>
     <string name="secured" translatable="false">Not Secured</string>
-    <string name="passwords" translatable="false">Passwords</string>
-    <string name="add_web" translatable="false">https://sites.google.com/view/privacy-policy-internetbooster/accueil</string>
-    <string name="email" translatable="false">hkdevcompany@gmail.com</string>
     <string name="info_title" translatable="false">Note</string>
     <string name="info_message" translatable="false">Remember, you NEED to be ROOT if you are under Kitkat or below.
 
 If you are under Lollipop or upper, you can choose between ROOT and NO ROOT method."</string>
 
-    <string name="enter_mac" translatable="false">Enter Mac Address</string>
-    <string name="generate" translatable="false">Generate</string>
-    <string name="wps_pin_is" translatable="false">WPS Pin is:</string>
-    <string name="banner_home_footer" translatable="false">ca-app-pub-5552375484144305/5559936119</string>
-    <string name="interstitial_full_screen" translatable="false">ca-app-pub-5552375484144305/5558135319</string>
+
 </resources>

@@ -456,13 +456,7 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void showFailDialog() {
-        new Builder(this).setMessage(R.string.failDialogMsg).setNegativeButton(R.string.cancel, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).setCancelable(false).create().show();
-    }
+
 
     protected void onPause() {
         if (receptorWifi != null) {
@@ -558,7 +552,7 @@ public class MainActivity extends AppCompatActivity {
                             NetworkInfo mWifi = cManager.getActiveNetworkInfo();
                             if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && !MainActivity.wff.getConnectionInfo().getBSSID().equalsIgnoreCase(selectedBSSID)) {
                                 progressDialog.dismiss();
-                                showFailDialog();
+
                             }
                             progressDialog.dismiss();
 
@@ -571,7 +565,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             progressDialog.dismiss();
-                            showFailDialog();
+
                         }
                     });
                 }
@@ -661,13 +655,12 @@ public class MainActivity extends AppCompatActivity {
                     showNoRootDeviceDialog();
                     return;
                 case NOT_CONNECTED:
-                    showFailDialog();
                     return;
                 case CONNECTED:
                     showSuccessDialog();
                     return;
                 default:
-                    showFailDialog();
+
             }
         }
     }
