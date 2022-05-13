@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 
 import android.content.BroadcastReceiver;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -67,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     protected static boolean firstversion = true;
     protected static boolean locationactvity = false;
     protected static boolean controlReciever;
-    protected static boolean activatGPS = false;
+    protected static boolean activateGPS = false;
     protected static WifiManager wifi_info;
     protected final Context context = this;
     private final int PERMISSIONS_REQUEST_LOCATION = 100;
@@ -158,10 +156,10 @@ public class MainActivity extends AppCompatActivity {
     private void showPermissionRequestInfo() {
         if (VERSION.SDK_INT < 23) {
             showInfoAboutGPSBelowAndroidM();
-            activatGPS = false;
+            activateGPS = false;
             return;
         }
-        activatGPS = true;
+        activateGPS = true;
         if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
             Builder builder = new Builder(this);
             builder.setPositiveButton(R.string.ok, new OnClickListener() {
@@ -171,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             builder.setCancelable(false);
-            builder.setMessage(R.string.request_gps_info);
+            builder.setMessage(R.string.welcome_mes);
             AlertDialog dialog = builder.create();
             dialog.show();
             ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
@@ -316,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     }
-
+//encryption type
     private int getLock(String capabilities) {
         return (capabilities.contains("WPA2") || capabilities.contains("WPA") || capabilities.contains("WEP")) ? R.mipmap.ic_lock : R.mipmap.ic_lock_open;
     }
@@ -482,95 +480,8 @@ public class MainActivity extends AppCompatActivity {
             };
             WpsInfo wpsInfo = new WpsInfo();
             wpsInfo.setup = 2;
-            wpsInfo.pin = pin;
             wpsInfo.BSSID = BSSID;
             wifi_info.startWps(wpsInfo, wpsCallback);
-        }
-    }
-
-    private class CallSU extends AsyncTask<Void, Integer, Integer> {
-        static final int CONNECTED = 1;
-        static final int NOROOTDEVICE = -1;
-        static final int NOT_CONNECTED = 0;
-        final String BSSID;
-        final String cmd;
-        final ProgressDialog pDialog;
-
-        public CallSU(String cmd, String BSSID) {
-            this.pDialog = new ProgressDialog(context);
-            this.cmd = cmd;
-            this.BSSID = BSSID;
-        }
-
-        protected Integer doInBackground(Void... params) {
-            ConnectivityManager cManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-            NetworkInfo mWifi = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWifi.isConnected()) {
-                if (wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                    return CONNECTED;
-                }
-                wifi_info.disconnect();
-                while (mWifi.isConnected()) {
-                    mWifi = cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                }
-            }
-            Log.e("COMANDO", cmd);
-            if (!SU.available()) {
-                return NOROOTDEVICE;
-            }
-            List<String> resultArray = SU.run(cmd);
-            if (resultArray == null || resultArray.isEmpty() || !(resultArray.isEmpty() || (resultArray.get(0)).contains("OK"))) {
-                SU.run(cmd.replace("IFNAME=wlan0 ", ""));
-                Log.e("COMANDO 2", cmd.replace("IFNAME=wlan0 ", ""));
-            }
-            long time = System.currentTimeMillis();
-            boolean out = false;
-            while (!out && System.currentTimeMillis() < 10000 + time) {
-                if (cManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected() && wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                    out = true;
-                }
-            }
-            return null;
-        }
-
-        protected void onProgressUpdate(Integer... values) {
-            pDialog.setProgress(values[0]);
-        }
-
-        protected void onPreExecute() {
-            if (wifi_info == null) {
-                wifi_info = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            }
-            if (!wifi_info.isWifiEnabled()) {
-                Toast.makeText(MainActivity.this, getString(R.string.enablingWiFi), Toast.LENGTH_SHORT).show();
-                wifi_info.setWifiEnabled(true);
-            }
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            pDialog.setMessage(getResources().getString(R.string.tryConnection));
-            pDialog.setMax(1);
-            pDialog.setProgress(0);
-            pDialog.setCancelable(false);
-            pDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), new OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            pDialog.show();
-        }
-
-        protected void onPostExecute(Integer control) {
-            pDialog.dismiss();
-            switch (control) {
-                case NOROOTDEVICE:
-                    showNoRootDeviceDialog();
-                    return;
-                case NOT_CONNECTED:
-                    return;
-                case CONNECTED:
-                    return;
-                default:
-
-            }
         }
     }
 

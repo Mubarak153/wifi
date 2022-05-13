@@ -9,22 +9,26 @@
     tools:context="org.hdev.wifiwpspro.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <RelativeLayout
             android:id="@+id/rellor"
-            android:background="@android:drawable/screen_background_dark"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="80dp"
+            android:background="@android:drawable/screen_background_dark">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="56dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:background="@color/colorPrimary"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/colorAccent"
                 app:titleTextColor="#52565c">
 
                 <TextView

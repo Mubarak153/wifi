@@ -5,7 +5,7 @@ public class Networking {
     private final String BSSID;
     private final String ESSID;
     private final int signalisation;
-    private final int lock;
+    private final int fermer;
     private final String signal;
     private final String information_wifi;
 
@@ -15,7 +15,7 @@ public class Networking {
         this.information_wifi = information_wifi;
         this.signal = signal;
         this.signalisation = signalisation;
-        this.lock = fermer;
+        this.fermer = fermer;
     }
 
     public String getBSSID() {
@@ -35,7 +35,7 @@ public class Networking {
     }
 
     public int getLOCK() {
-        return this.lock;
+        return this.fermer;
     }
 
     public int getWiFiSignalIMG() {
