@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android GPs/WIFI</string>
+    <string name="app_name">Android WIFI/GPS</string>
     <string name="action_scan">Scan</string>
     <string name="cancel">Cancel</string>
     <string name="dialog_gps_cancel">Remember to enable GPS location to start scanning WiFI networks!</string>
@@ -10,13 +10,13 @@
     <string name="info_gps">"Enable location services"</string>
     <string name="mainNoNetworks">"There are no nearby WiFi networks."</string>
     <string name="mainlayout_info">"To begin scanning networks, click 'Scan.'</string>
-    <string name="noRootInfo" translatable="false">"Your device is not rooted.&lt;br/>&lt;br/>\"Try PIN (root)\" and \"Show passwords\" are only for rooted devices.&lt;br/>&lt;br/>If your device is not rooted, you only can scan AP's and see info about it.&lt;br/>&lt;br/>&lt;a href=https://www.google.com/search?q=root+%1$s&amp;gws_rd=ssl>How to root your %2$s&lt;/a>&lt;br/>&lt;br/>&lt;i>Be a great user! Be a superuser! Be root!&lt;/i>"</string>
+    <string name="noRootInfo" >"Your device is not rooted.&lt;br/>&lt;br/>\"Try PIN (root)\" and \"Show passwords\" are only for rooted devices.&lt;br/>&lt;br/>If your device is not rooted, you only can scan AP's and see info about it.&lt;br/>&lt;br/>&lt;a href=https://www.google.com/search?q=root+%1$s&amp;gws_rd=ssl>How to root your %2$s&lt;/a>&lt;br/>&lt;br/>&lt;i>Be a great user! Be a superuser! Be root!&lt;/i>"</string>
     <string name="noSSID">-- Hidden network --</string>
     <string name="noScan">"Please, press 'Scan' button to scan available networks.
 
 Be sure that WiFi is enabled."</string>
-    <string name="no_available" translatable="false">Not available</string>
-    <string name="ok" translatable="false">OK</string>
+    <string name="not_available" >Not available</string>
+    <string name="ok" >OK</string>
     <string name="request_gps_denied_info" translatable="false">"But… why?
 
 Please, allow access to location (GPS) to scan networks."</string>
@@ -29,13 +29,13 @@ To scan WiFi networks using Android 6.0 or above, you must provide location perm
 We hope that it's your Network! Seek Permission before testing"</string>
     <string name="useRootMethod">Use root method</string>
     <string name="ssid_name">Network Name:</string>
-    <string name="mac_name">Network Mac address:</string>
+    <string name="mac_name">Mac address:</string>
     <string name="wps_enabled">Wps Enabled:</string>
     <string name="encryption_type">Encryption Type:</string>
     <string name="dbm">dBm</string>
     <string name="secured">Not Secured</string>
-    <string name="info_title" translatable="false">Note</string>
-    <string name="info_message" translatable="false">Remember, you NEED to be ROOT if you are under Kitkat or below.
+    <string name="info_title" >Note</string>
+    <string name="info_message" >Remember, you NEED to be ROOT if you are under Kitkat or below.
 
 If you are under Lollipop or upper, you can choose between ROOT and NO ROOT method."</string>
 

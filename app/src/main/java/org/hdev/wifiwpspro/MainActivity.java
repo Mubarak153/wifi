@@ -18,7 +18,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WpsCallback;
 import android.net.wifi.WpsInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -313,20 +312,20 @@ public class MainActivity extends AppCompatActivity {
     }
 //encryption type
     private int getLock(String capabilities) {
-        return (capabilities.contains("WPA2") || capabilities.contains("WPA") || capabilities.contains("WEP")) ? R.mipmap.ic_lock : R.mipmap.ic_lock_open;
+        return (capabilities.contains("WPA2") || capabilities.contains("WPA") || capabilities.contains("WEP")) ? R.mipmap.closed_lock : R.mipmap.open_lock;
     }
 
 //The Received Signal Strength Indicator (RSSI) is an estimation of a device's ability to hear, detect, and receive signals from any wireless access point or Wi-Fi router.
     private int getWiFi(int rssi) {
         switch (WifiManager.calculateSignalLevel(rssi, 4)) {
             case 0:
-                return R.mipmap.ic_wifi_1;
+                return R.mipmap.wifi1;
             case 1:
-                return R.mipmap.ic_wifi_2;
+                return R.mipmap.wifi2;
             case 2:
-                return R.mipmap.ic_wifi_3;
+                return R.mipmap.wifi3;
             case 3:
-                return R.mipmap.ic_wifi_4;
+                return R.mipmap.wifi4;
             default:
                 return -1;
         }
