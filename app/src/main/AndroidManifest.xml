@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.hdev.wifiwpspro">
+    package="org.hdev.wifi">
 
     <uses-feature android:name="android.hardware.wifi" />
 
@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="org.hdev.wifiwpspro.MainActivity">
+        <activity android:name="org.hdev.wifi.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

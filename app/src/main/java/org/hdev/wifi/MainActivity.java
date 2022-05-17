@@ -1,7 +1,4 @@
-package org.hdev.wifiwpspro;
-
-import android.annotation.TargetApi;
-import android.app.ProgressDialog;
+package org.hdev.wifi;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,52 +8,40 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.net.wifi.WifiManager.WpsCallback;
-import android.net.wifi.WpsInfo;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AlertDialog.Builder;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
-
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import eu.chainfire.libsuperuser.Shell.SH;
 
 public class MainActivity extends AppCompatActivity {
     protected static boolean scanauto;
@@ -74,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     protected ListView list;
     protected ArrayList<Networking> networkingList;
     protected WifiReceiver receptorWifi;
-    protected String selectedBSSID;
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
 
@@ -349,17 +333,6 @@ public class MainActivity extends AppCompatActivity {
 
 //Root option
 
-    private void showNoRootDeviceDialog() {
-        String model = (SH.run("getprop ro.product.model").get(0)).replace(" ", "+");
-        String brand = SH.run("getprop ro.product.brand").get(0);
-        AlertDialog dialog = new Builder(this).setMessage(Html.fromHtml(String.format(getString(R.string.noRootInfo), new Object[]{model, brand}))).setNegativeButton((int) R.string.ok, new OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).setCancelable(false).create();
-        dialog.show();
-        ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-    }
 
 
 
@@ -413,72 +386,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         }).create().show();
-    }
-
-    @TargetApi(21)
-    private void connectWithoutRoot(String BSSID, String pin) {
-        if (BSSID != null && pin != null) {
-            if (wifi_info == null) {
-                wifi_info = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            }
-            if (!wifi_info.isWifiEnabled()) {
-                Toast.makeText(this, R.string.enablingWiFi, Toast.LENGTH_SHORT).show();
-                wifi_info.setWifiEnabled(true);
-            }
-            final ConnectivityManager cManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-            NetworkInfo mWifi = cManager.getActiveNetworkInfo();
-            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(BSSID)) {
-                return;
-            }
-            final ProgressDialog progressDialog = new ProgressDialog(context);
-            WpsCallback wpsCallback = new WpsCallback() {
-                public void onStarted(String pin) {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                            progressDialog.setMessage(getResources().getString(R.string.tryConnection));
-                            progressDialog.setMax(1);
-                            progressDialog.setProgress(0);
-                            progressDialog.setCancelable(false);
-                            progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(R.string.cancel), new OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    wifi_info.cancelWps(null);
-                                    dialog.dismiss();
-                                }
-                            });
-                            progressDialog.show();
-                        }
-                    });
-                }
-//
-                public void onSucceeded() {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            NetworkInfo mWifi = cManager.getActiveNetworkInfo();
-                            if (mWifi != null && mWifi.getType() == 1 && mWifi.isConnected() && !MainActivity.wifi_info.getConnectionInfo().getBSSID().equalsIgnoreCase(selectedBSSID)) {
-                                progressDialog.dismiss();
-
-                            }
-                            progressDialog.dismiss();
-
-                        }
-                    });
-                }
-
-                public void onFailed(int reason) {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            progressDialog.dismiss();
-
-                        }
-                    });
-                }
-            };
-            WpsInfo wpsInfo = new WpsInfo();
-            wpsInfo.setup = 2;
-            wpsInfo.BSSID = BSSID;
-            wifi_info.startWps(wpsInfo, wpsCallback);
-        }
     }
 
     private class WifiReceiver extends BroadcastReceiver {

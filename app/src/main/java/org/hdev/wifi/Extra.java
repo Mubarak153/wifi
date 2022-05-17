@@ -1,4 +1,4 @@
-package org.hdev.wifiwpspro;
+package org.hdev.wifi;
 
 
 public class Extra {

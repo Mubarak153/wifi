@@ -1,4 +1,4 @@
-package org.hdev.wifiwpspro;
+package org.hdev.wifi;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

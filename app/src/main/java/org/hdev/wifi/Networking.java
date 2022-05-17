@@ -1,21 +1,23 @@
-package org.hdev.wifiwpspro;
+package org.hdev.wifi;
 
 
 public class Networking {
     private final String BSSID;
     private final String ESSID;
     private final int signalisation;
-    private final int fermer;
+    private final int lock;
     private final String signal;
     private final String information_wifi;
 
-    public Networking(String BSSID, String ESSID, String information_wifi, String signal, int signalisation, int fermer) {
+    public Networking(String BSSID, String ESSID, String information_wifi, String signal, int signalisation, int lock) {
         this.BSSID = BSSID;
         this.ESSID = ESSID;
         this.information_wifi = information_wifi;
         this.signal = signal;
         this.signalisation = signalisation;
-        this.fermer = fermer;
+        this.lock = lock;
+
+
     }
 
     public String getBSSID() {
@@ -35,7 +37,7 @@ public class Networking {
     }
 
     public int getLOCK() {
-        return this.fermer;
+        return this.lock;
     }
 
     public int getWiFiSignalIMG() {

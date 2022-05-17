@@ -1,4 +1,4 @@
-package org.hdev.wifiwpspro;
+package org.hdev.wifi;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry ;
@@ -16,6 +16,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("org.hdev.wifiwpspro", appContext.getPackageName());
+        assertEquals("org.hdev.wifi", appContext.getPackageName());
     }
 }
