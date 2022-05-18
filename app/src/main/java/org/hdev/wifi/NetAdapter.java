@@ -3,14 +3,12 @@ package org.hdev.wifi;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import androidx.core.content.ContextCompat;
-
 import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 
@@ -60,7 +58,7 @@ public class NetAdapter extends ArrayAdapter {
         }
         bssid.setText(context.getString(R.string.mac_name)+" "+(networkingList.get(position)).getBSSID());
         ((TextView) item.findViewById(R.id.signal)).setText((networkingList.get(position)).getSIGNAL()+" "+context.getString(R.string.dbm));
-        ((ImageView) item.findViewById(R.id.fermer_icon)).setImageResource((networkingList.get(position)).getLOCK());
+        ((ImageView) item.findViewById(R.id.lock_icon)).setImageResource((networkingList.get(position)).getLOCK());
         wifiSignal.setImageResource((networkingList.get(position)).getWiFiSignalIMG());
         return item;
     }
