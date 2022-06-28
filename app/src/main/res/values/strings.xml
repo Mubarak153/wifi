@@ -6,6 +6,7 @@
     <string name="dialog_need_active_gps_info">"Remember, if you're in Android 6.0+, you need to activate GPS."</string>
     <string name="enableWiFi">Enable WiFi</string>
     <string name="enablingWiFi">Enabling WiFi…</string>
+    <string name="about_description">hi guys</string>
 
     <string name="info_gps">"Enable location services"</string>
     <string name="mainNoNetworks">"There are no nearby WiFi networks."</string>
@@ -37,6 +38,7 @@ We hope that it's your Network! Seek Permission before testing"</string>
     <string name="info_message" >Remember, you NEED to be ROOT if you are under Kitkat or below.
 
 If you are under Lollipop or upper, you can choose between ROOT and NO ROOT method."</string>
+    <string name="action_about">About_us</string>
 
 
 </resources>

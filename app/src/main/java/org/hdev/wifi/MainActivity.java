@@ -19,6 +19,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected boolean initialisationSYS = false;
     protected TextView noTextNet;
 
-//Checking version for lcocation services
+//Checking version for location services
     private static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
         if (VERSION.SDK_INT >= 19) {
@@ -328,8 +329,29 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
     }
-
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_about) {
+            showAbout();
+        } else if (id == R.id.action_scan) {
+            if (!scanauto) {
+                if (!initialisationSYS) {
+                    initialisationSYS = true;
+                    loadSystem();
+                }
+                if (!activateGPS || isLocationEnabled(context)) {
+                    intent.putExtra("List_Position", MODE_PRIVATE);
+                    showScan();
+                } else {
+                    buildAlertMessageNoGps();
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void showAbout() {
+        startActivity(new Intent(this, AboutActivity.class));
+    }
 
 //Root option
 
