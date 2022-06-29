@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.medyo:android-about-page:1.2.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2740d90544db13996e7c1a68eeca3dc8/transformed/jetified-android-about-page-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2740d90544db13996e7c1a68eeca3dc8/transformed/jetified-android-about-page-1.2.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2740d90544db13996e7c1a68eeca3dc8/transformed/jetified-android-about-page-1.2.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6bf1b0e696ae98fd25300f9b7718e339/transformed/jetified-android-about-page-1.2.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6bf1b0e696ae98fd25300f9b7718e339/transformed/jetified-android-about-page-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6bf1b0e696ae98fd25300f9b7718e339/transformed/jetified-android-about-page-1.2.2/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.medyo/android-about-page/1.2.2/134fa7a5d0b5e68367db8148ced0a754b4534a96/android-about-page-1.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.medyo/android-about-page/1.2.2/7b2994c30c079f3de5e92b5e2bf5c9db1a4173c4/android-about-page-1.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
