@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: eu.chainfire:libsuperuser:1.0.0.201811281328@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0fbb3e25059924a4a993f9ecad4572de/transformed/jetified-libsuperuser-1.0.0.201811281328/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/160c405a0633ab933c3ae6c2ce157d18/transformed/jetified-libsuperuser-1.0.0.201811281328/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/160c405a0633ab933c3ae6c2ce157d18/transformed/jetified-libsuperuser-1.0.0.201811281328/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/160c405a0633ab933c3ae6c2ce157d18/transformed/jetified-libsuperuser-1.0.0.201811281328/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/eu.chainfire/libsuperuser/1.0.0.201811281328/a72273aa6811ab43ea76c8c2e21518a771ede212/libsuperuser-1.0.0.201811281328-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/eu.chainfire/libsuperuser/1.0.0.201811281328/2f4aa6fc397410c9d7be19668cdd9cabe939dece/libsuperuser-1.0.0.201811281328-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

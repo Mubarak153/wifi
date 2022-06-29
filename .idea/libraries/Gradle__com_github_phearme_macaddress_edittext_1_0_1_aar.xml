@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.phearme:macaddress-edittext:1.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/268ee0c3f5d707d35baa62b110617ba5/transformed/jetified-macaddress-edittext-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/268ee0c3f5d707d35baa62b110617ba5/transformed/jetified-macaddress-edittext-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/268ee0c3f5d707d35baa62b110617ba5/transformed/jetified-macaddress-edittext-1.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/423e3bfd9f15df56ceebaf41dd727101/transformed/jetified-macaddress-edittext-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/423e3bfd9f15df56ceebaf41dd727101/transformed/jetified-macaddress-edittext-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/423e3bfd9f15df56ceebaf41dd727101/transformed/jetified-macaddress-edittext-1.0.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
