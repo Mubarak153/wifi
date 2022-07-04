@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 //Checking version for location services
     private static boolean isLocationEnabled(Context context) {
         int locationMode = 0;
-        if (VERSION.SDK_INT >= 19)
+        if (VERSION.SDK_INT >= 19){
             try {
                 locationMode = Secure.getInt(context.getContentResolver(), "location_mode");
             } catch (SettingNotFoundException e) {
